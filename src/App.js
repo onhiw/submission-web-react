@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useState } from "react";
+import NoteHeader from "./components/NoteHeader";
+import NoteBody from "./components/NoteBody";
+
+import { getInitialData } from "./utils";
 
 function App() {
+  const allNote = getInitialData();
+  const [search, setSearch] = useState("");
+  const [notes, setNotes] = useState(allNote);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="note-app">
+      <NoteHeader search={search} setSearch={setSearch} />
+      <NoteBody notes={notes} search={search} setNotes={setNotes} />
     </div>
   );
 }
